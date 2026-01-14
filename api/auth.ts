@@ -1,4 +1,4 @@
-import { API_URL } from "@/config/api";
+import { API_URL } from "@/libs/api";
 import axios from "axios";
 
 export async function loginApi(username: string, password: string) {
