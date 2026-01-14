@@ -1,9 +1,17 @@
+import { useAuthStore } from "@/store/authStore";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 const LoginScreen = () => {
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
+
+   const { login } = useAuthStore();
+
+   const handleLogin = () => {
+      login()
+   }
+
    return (
       <View style={styles.container}>
          <Text>Username</Text>
@@ -22,7 +30,7 @@ const LoginScreen = () => {
             placeholder="Enter your password"
          />
 
-         <Button title="Sign In" onPress={() => { }} />
+         <Button title="Sign In" onPress={handleLogin} />
       </View>
    )
 }

@@ -10,7 +10,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Button title="Login" onPress={() => router.push("/auth/login")} />
+      <Button title="Login" onPress={() => router.push("/login")} />
     </View>
   );
 }
