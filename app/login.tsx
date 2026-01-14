@@ -1,6 +1,6 @@
 import { useAuthStore } from "@/store/authStore";
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 const LoginScreen = () => {
    const [username, setUsername] = useState('');
@@ -8,8 +8,12 @@ const LoginScreen = () => {
 
    const { login } = useAuthStore();
 
-   const handleLogin = () => {
-      login()
+   const handleLogin = async () => {
+      const success = await login(username, password);
+
+      if (!success) {
+         Alert.alert('Login Failed', 'Invalid username or password');
+      }
    }
 
    return (
