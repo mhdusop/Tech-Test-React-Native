@@ -1,10 +1,12 @@
 import { AppHeader } from "@/components/base/AppHeader";
 import { PostCard } from "@/components/posts/PostsCard";
 import { usePostStore } from "@/store/postsStore";
+import { router } from "expo-router";
 import React, { useEffect } from "react";
 import {
    ActivityIndicator,
    FlatList,
+   Pressable,
    RefreshControl,
    StyleSheet,
    Text,
@@ -49,7 +51,9 @@ export default function Index() {
                }
                contentContainerStyle={styles.list}
                renderItem={({ item }) => (
-                  <PostCard post={item} preview />
+                  <Pressable onPress={() => router.push(`/posts/${item.id}`)}>
+                     <PostCard post={item} preview />
+                  </Pressable>
                )}
             />
          )}

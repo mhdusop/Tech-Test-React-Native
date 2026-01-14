@@ -1,26 +1,19 @@
+import { Posts } from "@/interfaces/posts";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { PostMeta } from "./PostsMeta";
 
-interface Post {
-   title: string;
-   body: string;
-   reactions: {
-      likes: number;
-      dislikes: number;
-   };
-   views: number;
-}
-
 interface Props {
-   post: Post;
+   post: Posts;
    preview?: boolean;
 }
 
 export function PostCard({ post, preview = false }: Props) {
    return (
       <View style={styles.card}>
-         <Text style={styles.title}>{post.title}</Text>
+         <Text style={styles.title} numberOfLines={2}>
+            {post.title}
+         </Text>
 
          <Text
             style={styles.body}
@@ -28,6 +21,8 @@ export function PostCard({ post, preview = false }: Props) {
          >
             {post.body}
          </Text>
+
+         <View style={styles.divider} />
 
          <PostMeta
             likes={post.reactions.likes}
@@ -40,19 +35,35 @@ export function PostCard({ post, preview = false }: Props) {
 
 const styles = StyleSheet.create({
    card: {
+      backgroundColor: "#FFFFFF",
+      borderRadius: 14,
       padding: 16,
-      backgroundColor: "#fff",
-      borderRadius: 8,
-      marginBottom: 12,
-      elevation: 2,
+      marginBottom: 14,
+
+      // Android shadow
+      elevation: 3,
+
+      // iOS shadow
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.08,
+      shadowRadius: 6,
    },
    title: {
       fontSize: 16,
-      fontWeight: "bold",
+      fontWeight: "600",
+      color: "#111",
       marginBottom: 6,
+      lineHeight: 22,
    },
    body: {
       fontSize: 14,
-      color: "#444",
+      color: "#555",
+      lineHeight: 20,
+   },
+   divider: {
+      height: 1,
+      backgroundColor: "#EEE",
+      marginVertical: 12,
    },
 });

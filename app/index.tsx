@@ -1,16 +1,5 @@
-import { router } from "expo-router";
-import { Button, View } from "react-native";
+import LoginScreen from "./login";
 
 export default function Index() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Button title="Login" onPress={() => router.push("/login")} />
-    </View>
-  );
+  return <LoginScreen />;
 }

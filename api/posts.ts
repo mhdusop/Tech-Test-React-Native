@@ -8,3 +8,11 @@ export async function getPostsApi() {
 
    return response;
 }
+
+export async function getPostByIdApi(postId: number) {
+   const response = await axios.get(
+      `${API_URL}posts/${postId}`,
+   );
+
+   return response;
+}

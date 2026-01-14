@@ -12,20 +12,19 @@ export function AppHeader({ title }: Props) {
 
    return (
       <View style={styles.container}>
+         <Text style={styles.title}>{title}</Text>
          <View>
             <Text style={styles.email}>
                {user?.email ?? "Guest"}
             </Text>
          </View>
-
-         <Text style={styles.title}>{title}</Text>
       </View>
    );
 }
 
 const styles = StyleSheet.create({
    container: {
-      paddingTop: 48,
+      paddingTop: 40,
       paddingBottom: 16,
       paddingHorizontal: 16,
       backgroundColor: "#fff",
