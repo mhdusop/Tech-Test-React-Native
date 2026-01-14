@@ -1,3 +1,4 @@
+import { User } from "@/interfaces/user";
 import { loginService } from "@/services/authService";
 import { create } from "zustand";
 
@@ -5,7 +6,7 @@ interface AuthStore {
    isAuthenticated: boolean;
    accessToken: string | null;
    refreshToken: string | null;
-   user: object | null;
+   user: User | null;
    accessTokenExpiration: number | null;
 
    login: (username: string, password: string) => Promise<boolean>;
