@@ -1,3 +1,4 @@
+import { useThemeColors } from "@/hooks/useThemeColor";
 import { Posts } from "@/interfaces/posts";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -9,20 +10,30 @@ interface Props {
 }
 
 export function PostCard({ post, preview = false }: Props) {
+   const colors = useThemeColors();
+
    return (
-      <View style={styles.card}>
-         <Text style={styles.title} numberOfLines={2}>
+      <View style={[styles.card, { backgroundColor: colors.card }]}>
+         <Text
+            style={[styles.title, { color: colors.textPrimary }]}
+            numberOfLines={2}
+         >
             {post.title}
          </Text>
 
          <Text
-            style={styles.body}
+            style={[styles.body, { color: colors.textSecondary }]}
             numberOfLines={preview ? 3 : undefined}
          >
             {post.body}
          </Text>
 
-         <View style={styles.divider} />
+         <View
+            style={[
+               styles.divider,
+               { backgroundColor: colors.border },
+            ]}
+         />
 
          <PostMeta
             likes={post.reactions.likes}

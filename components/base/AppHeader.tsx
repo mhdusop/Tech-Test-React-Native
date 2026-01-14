@@ -1,7 +1,9 @@
 // components/AppHeader.tsx
+import { useThemeColors } from "@/hooks/useThemeColor";
 import { useAuthStore } from "@/store/authStore";
+import { useThemeStore } from "@/store/themeStore";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Switch, Text, View } from "react-native";
 
 interface Props {
    title: string;
@@ -9,15 +11,54 @@ interface Props {
 
 export function AppHeader({ title }: Props) {
    const user = useAuthStore((state) => state.user);
+   const { mode, setMode } = useThemeStore();
+   const colors = useThemeColors();
+
+   const isDark = mode === "dark";
 
    return (
-      <View style={styles.container}>
-         <Text style={styles.title}>{title}</Text>
+      <View
+         style={[
+            styles.container,
+            {
+               backgroundColor: colors.card,
+               borderBottomColor: colors.border,
+            },
+         ]}
+      >
+         {/* LEFT */}
          <View>
-            <Text style={styles.email}>
+            <Text
+               style={[
+                  styles.title,
+                  { color: colors.textPrimary },
+               ]}
+            >
+               {title}
+            </Text>
+
+            <Text
+               style={[
+                  styles.email,
+                  { color: colors.textSecondary },
+               ]}
+            >
                {user?.email ?? "Guest"}
             </Text>
          </View>
+
+         {/* RIGHT */}
+         <Switch
+            value={isDark}
+            onValueChange={(val) =>
+               setMode(val ? "dark" : "light")
+            }
+            thumbColor={isDark ? colors.primary : "#f4f4f5"}
+            trackColor={{
+               false: colors.border,
+               true: colors.primary,
+            }}
+         />
       </View>
    );
 }

@@ -1,16 +1,18 @@
+import { useThemeColors } from '@/hooks/useThemeColor';
 import { useAuthStore } from '@/store/authStore';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function Page() {
    const { logout } = useAuthStore();
+   const colors = useThemeColors();
 
    const handleLogout = () => {
       logout();
    }
 
    return (
-      <View>
+      <View style={{ flex: 1, backgroundColor: colors.background }}>
          <Text>Profile</Text>
 
          <Pressable

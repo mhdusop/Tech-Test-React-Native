@@ -1,15 +1,15 @@
+import { useThemeColors } from "@/hooks/useThemeColor";
 import { useAuthStore } from "@/store/authStore";
 import { useState } from "react";
 import {
    ActivityIndicator,
    Alert,
    KeyboardAvoidingView,
-   Platform,
    Pressable,
    StyleSheet,
    Text,
    TextInput,
-   View,
+   View
 } from "react-native";
 
 const LoginScreen = () => {
@@ -18,6 +18,7 @@ const LoginScreen = () => {
    const [loading, setLoading] = useState(false);
 
    const { login } = useAuthStore();
+   const colors = useThemeColors();
 
    const handleLogin = async () => {
       if (!username || !password) {
@@ -35,16 +36,19 @@ const LoginScreen = () => {
    };
 
    return (
-      <KeyboardAvoidingView
-         style={styles.container}
-         behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
+      <KeyboardAvoidingView style={[styles.container, { backgroundColor: colors.background }]}>
          <View>
-            <Text style={styles.title}>Login</Text>
-            <Text style={styles.subtitle}>Sign in to continue</Text>
+            <Text style={[styles.title, { color: colors.textPrimary }]}>
+               Login
+            </Text>
+            <Text style={[styles.subtitle, { color: colors.textSecondary }]}>
+               Sign in to continue
+            </Text>
 
             <View style={styles.field}>
-               <Text style={styles.label}>Username</Text>
+               <Text style={[styles.label, { color: colors.textSecondary }]}>
+                  Username
+               </Text>
                <TextInput
                   value={username}
                   onChangeText={setUsername}
@@ -55,7 +59,9 @@ const LoginScreen = () => {
             </View>
 
             <View style={styles.field}>
-               <Text style={styles.label}>Password</Text>
+               <Text style={[styles.label, { color: colors.textSecondary }]}>
+                  Password
+               </Text>
                <TextInput
                   value={password}
                   onChangeText={setPassword}
@@ -66,10 +72,9 @@ const LoginScreen = () => {
             </View>
 
             <Pressable
-               style={({ pressed }) => [
+               style={[
                   styles.button,
-                  pressed && { opacity: 0.9 },
-                  loading && { opacity: 0.6 },
+                  { backgroundColor: colors.primary },
                ]}
                onPress={handleLogin}
                disabled={loading}

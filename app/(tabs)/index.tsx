@@ -1,5 +1,6 @@
 import { AppHeader } from "@/components/base/AppHeader";
 import { PostCard } from "@/components/posts/PostsCard";
+import { useThemeColors } from "@/hooks/useThemeColor";
 import { usePostStore } from "@/store/postsStore";
 import { router } from "expo-router";
 import React, { useEffect } from "react";
@@ -22,13 +23,14 @@ export default function Index() {
       fetchPosts,
       refreshPosts,
    } = usePostStore();
+   const colors = useThemeColors();
 
    useEffect(() => {
       fetchPosts();
    }, [fetchPosts]);
 
    return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: colors.background }}>
          <AppHeader title="List Posts" />
 
          {loading ? (
@@ -37,7 +39,7 @@ export default function Index() {
             </View>
          ) : error ? (
             <View style={styles.center}>
-               <Text style={styles.error}>{error}</Text>
+               <Text style={[styles.error, { color: colors.danger }]}>{error}</Text>
             </View>
          ) : (
             <FlatList
