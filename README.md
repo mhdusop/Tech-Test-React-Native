@@ -1,50 +1,97 @@
-# Welcome to your Expo app 👋
+# 📱 React Native Expo Posts App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern **React Native (Expo)** application that displays a list of posts, post details, authentication flow, and supports **light & dark mode** with a clean **layered architecture**.
 
-## Get started
+_Note: I want to make a disclaimer beforehand: this is my first time creating an application using React Native Expo, so I don't know yet what the proper folder structure is in React Native. Cheers😁_
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## ✨ Features
 
-2. Start the app
+-  🔐 Authentication (Login / Logout)
+-  📰 Posts List with pull-to-refresh
+-  📄 Post Detail Page
+-  🏷️ Reusable Component
+-  🌗 Light & Dark Mode (Toggleable)
+-  🧭 File-based routing with Expo Router
+-  ⚡ State management using Zustand
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🛠️ Tech Stack
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Core
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+-  **React Native**
+-  **Expo**
+-  **Expo Router**
 
-## Get a fresh project
+### State Management
 
-When you're ready, run:
+-  **Zustand**
+
+### Networking
+
+-  **Axios**
+
+### Styling & UI
+
+-  React Native `StyleSheet`
+-  Custom Theme System (Light / Dark)
+-  `@expo/vector-icons` (Ionicons)
+
+### Language
+
+-  **TypeScript**
+
+---
+
+## 📂 Project Structure
 
 ```bash
-npm run reset-project
+src/
+├── app/
+│   ├── (tabs)/
+│   │   ├── _layout.tsx
+│   │   ├── index.tsx
+│   │   └── profile.tsx
+│   ├── posts/
+│   │   └── [id].tsx
+│   ├── _layout.tsx
+│   ├── index.tsx
+│   └── login.tsx
+├── components/
+│   ├── base/
+│   │   └── AppHeader.tsx
+│   └── posts/
+│       ├── PostsCard.tsx
+│       ├── PostsMeta.tsx
+│       └── PostsTags.tsx
+├── hooks/
+│   └── useThemeColor.ts
+├── interface/
+│   ├── posts.ts
+│   └── user.ts
+├── libs/
+│   ├── api.ts
+│   ├── asyncStorage.ts
+│   ├── colors.ts
+│   └── storageKeys.ts
+├── services/
+│   ├── authServices.ts
+│   └── postsServices.ts
+└── store/
+    ├── authStore.ts
+    ├── postsStore.ts
+    └── themeStore.ts
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### ✨The Result:
 
-## Learn more
+<img src="/assets/images/login-page.jpeg" alt="Login Page">
+<img src="/assets/images/list-posts.jpeg" alt="List Page">
+<img src="/assets/images/detail-posts.jpeg" alt="Detail Page">
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+<!-- ![Login Page](https://freeimage.host/i/f86hjs9)
+![List Page](https://freeimage.host/i/f86hhW7)
+![Detail Page](https://freeimage.host/i/f86hXxS) -->
